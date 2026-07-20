@@ -2,7 +2,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useSignup } from "../hooks/useSignup.ts";
-import styles from "./AuthForm.module.scss";
+import formStyles from "./AuthForm.module.scss";
+import layoutStyles from "./Foundations.module.scss";
 import { signupSchema, type SignupFormValues } from "./Signup.schema.ts";
 
 const Signup = () => {
@@ -16,9 +17,9 @@ const Signup = () => {
   });
 
   return (
-    <div className={styles.page}>
-      <form className={styles.card} onSubmit={handleSubmit(submit)} noValidate>
-        <div className={styles.badge}>
+    <div className={layoutStyles.page}>
+      <form className={formStyles.card} onSubmit={handleSubmit(submit)} noValidate>
+        <div className={formStyles.badge}>
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -32,82 +33,82 @@ const Signup = () => {
           </svg>
         </div>
 
-        <h1 className={styles.heading}>Create account</h1>
-        <p className={styles.subtext}>Start tracking your nutrition today</p>
+        <h1 className={formStyles.heading}>Create account</h1>
+        <p className={formStyles.subtext}>Start tracking your nutrition today</p>
 
-        {error && <p className={styles.formError}>{error}</p>}
+        {error && <p className={formStyles.formError}>{error}</p>}
 
-        <div className={styles.field}>
-          <label className={styles.label} htmlFor="name">
+        <div className={formStyles.field}>
+          <label className={formStyles.label} htmlFor="name">
             Name
           </label>
           <input
-            className={styles.input}
+            className={formStyles.input}
             id="name"
             type="text"
             {...register("name")}
           />
           {errors.name && (
-            <span className={styles.error}>{errors.name.message}</span>
+            <span className={formStyles.error}>{errors.name.message}</span>
           )}
         </div>
 
-        <div className={styles.field}>
-          <label className={styles.label} htmlFor="email">
+        <div className={formStyles.field}>
+          <label className={formStyles.label} htmlFor="email">
             Email
           </label>
           <input
-            className={styles.input}
+            className={formStyles.input}
             id="email"
             type="email"
             placeholder="you@example.com"
             {...register("email")}
           />
           {errors.email && (
-            <span className={styles.error}>{errors.email.message}</span>
+            <span className={formStyles.error}>{errors.email.message}</span>
           )}
         </div>
 
-        <div className={styles.field}>
-          <label className={styles.label} htmlFor="password">
+        <div className={formStyles.field}>
+          <label className={formStyles.label} htmlFor="password">
             Password
           </label>
           <input
-            className={styles.input}
+            className={formStyles.input}
             id="password"
             type="password"
             placeholder="••••••••"
             {...register("password")}
           />
           {errors.password && (
-            <span className={styles.error}>{errors.password.message}</span>
+            <span className={formStyles.error}>{errors.password.message}</span>
           )}
         </div>
 
-        <div className={styles.field}>
-          <label className={styles.label} htmlFor="confirmPassword">
+        <div className={formStyles.field}>
+          <label className={formStyles.label} htmlFor="confirmPassword">
             Confirm password
           </label>
           <input
-            className={styles.input}
+            className={formStyles.input}
             id="confirmPassword"
             type="password"
             placeholder="••••••••"
             {...register("confirmPassword")}
           />
           {errors.confirmPassword && (
-            <span className={styles.error}>
+            <span className={formStyles.error}>
               {errors.confirmPassword.message}
             </span>
           )}
         </div>
 
-        <button className={styles.submit} type="submit" disabled={isSubmitting}>
+        <button className={formStyles.submit} type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Signing up…" : "Sign up"}
         </button>
 
-        <div className={styles.footer}>
-          <Link className={styles.link} to="/login">
+        <div className={formStyles.footer}>
+          <Link className={formStyles.link} to="/login">
             Already have an account? Log in
           </Link>
         </div>

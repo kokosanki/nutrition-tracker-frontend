@@ -1,0 +1,14 @@
+@mixin button {
+  padding: 14px;
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--accent-hover);
+  }
+}

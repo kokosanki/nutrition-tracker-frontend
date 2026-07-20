@@ -1,11 +1,4 @@
-.page {
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  box-sizing: border-box;
-}
+@use "./mixins" as *;
 
 .card {
   width: 100%;
@@ -92,21 +85,12 @@
   margin-bottom: 16px;
 }
 
+
 .submit {
   width: 100%;
   margin-top: 8px;
-  padding: 14px;
-  font: inherit;
-  font-weight: 700;
-  color: #fff;
-  background: var(--accent);
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
 
-  &:hover {
-    background: var(--accent-hover);
-  }
+  @include button;
 }
 
 .footer {
@@ -125,3 +109,4 @@
     text-decoration: underline;
   }
 }
+
