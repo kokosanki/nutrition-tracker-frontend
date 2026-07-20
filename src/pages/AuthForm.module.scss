@@ -85,6 +85,13 @@
   color: var(--error);
 }
 
+.formError {
+  font-size: 14px;
+  color: var(--error);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
 .submit {
   width: 100%;
   margin-top: 8px;
