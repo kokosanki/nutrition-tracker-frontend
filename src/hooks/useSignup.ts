@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { signup } from '../api/auth.ts'
 import { ApiError } from '../api/client.ts'
-import type { SignupFormValues } from '../pages/Signup.schema.ts'
+import type { SignupFormValues } from '../pages/Signup/Signup.schema.ts'
 
 export const useSignup = () => {
   const [error, setError] = useState<string | null>(null)

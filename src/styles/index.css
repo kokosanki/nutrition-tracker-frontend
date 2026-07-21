@@ -1,0 +1,25 @@
+@import './variables.css';
+
+:root {
+  font: 16px/145% var(--sans);
+  color-scheme: light;
+  color: var(--card-text);
+  background: var(--page-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100svh;
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}

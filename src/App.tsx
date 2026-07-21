@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute.tsx'
-import Home from './pages/Home.tsx'
-import Login from './pages/Login.tsx'
-import Signup from './pages/Signup.tsx'
+import Home from './pages/Home/Home.tsx'
+import Login from './pages/Login/Login.tsx'
+import Signup from './pages/Signup/Signup.tsx'
 
 const App = () => {
   return (

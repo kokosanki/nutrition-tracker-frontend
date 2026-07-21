@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { getCurrentUser, login } from '../api/auth.ts'
 import { ApiError } from '../api/client.ts'
 import { useAuth } from './useAuth.ts'
-import type { LoginFormValues } from '../pages/Login.schema.ts'
+import type { LoginFormValues } from '../pages/Login/Login.schema.ts'
 
 export const useLogin = () => {
   const [error, setError] = useState<string | null>(null)

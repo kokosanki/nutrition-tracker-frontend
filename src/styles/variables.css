@@ -15,26 +15,4 @@
     rgba(43, 33, 24, 0.1) 0 20px 40px -12px, rgba(43, 33, 24, 0.06) 0 8px 16px -8px;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-
-  font: 16px/145% var(--sans);
-  color-scheme: light;
-  color: var(--card-text);
-  background: var(--page-bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  margin: 0;
-}
-
-#root {
-  min-height: 100svh;
-  box-sizing: border-box;
-}
-
-p {
-  margin: 0;
 }
