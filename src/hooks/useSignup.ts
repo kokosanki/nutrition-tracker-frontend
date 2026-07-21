@@ -15,6 +15,7 @@ export const useSignup = () => {
       await signup({ name: data.name, email: data.email, password: data.password })
       navigate('/')
     } catch (err) {
+      console.error(err)
       setError(err instanceof ApiError ? err.message : 'Something went wrong, please try again')
     }
   }

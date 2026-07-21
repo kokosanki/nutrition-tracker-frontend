@@ -18,6 +18,7 @@ export const useLogin = () => {
       setUser(await getCurrentUser())
       navigate('/')
     } catch (err) {
+      console.error(err)
       setError(err instanceof ApiError ? err.message : 'Something went wrong, please try again')
     }
   }
