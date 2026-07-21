@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import GuestRoute from './components/GuestRoute.tsx'
 import ProtectedRoute from './components/ProtectedRoute.tsx'
 import Home from './pages/Home/Home.tsx'
 import Login from './pages/Login/Login.tsx'
@@ -10,8 +11,10 @@ const App = () => {
       <Route element={<ProtectedRoute />}>
         <Route path="/" element={<Home />} />
       </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route element={<GuestRoute />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Route>
     </Routes>
   )
 }
