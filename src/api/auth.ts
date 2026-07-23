@@ -32,16 +32,17 @@ export const logout = (): Promise<void> => {
 };
 
 export interface CurrentUser {
+  id: number;
   email: string;
   name: string;
 }
 
-interface CurrentUserResponse extends CurrentUser {
-  password: string;
+interface CurrentUserResponse {
+  user: CurrentUser;
 }
 
 export const getCurrentUser = async (): Promise<CurrentUser> => {
-  const { email, name } = await apiFetch<CurrentUserResponse>("/auth/me");
-  return { email, name };
+  const { user } = await apiFetch<CurrentUserResponse>("/auth/me");
+  return user;
 };
 
