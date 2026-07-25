@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { logout as logoutUser } from "../api/auth.ts";
-import { ApiError } from "../api/client.ts";
+import { logout as logoutUser } from "@/api/auth.ts";
+import { ApiError } from "@/api/client.ts";
 import { useAuth } from "./useAuth.ts";
 
 export const useLogout = () => {

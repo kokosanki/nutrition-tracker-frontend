@@ -1,5 +1,5 @@
-import { useLogout } from "../../hooks/useLogout.ts";
-import PageShell from "../../modules/PageShell/PageShell.tsx";
+import { useLogout } from "@/hooks/useLogout.ts";
+import PageShell from "@/modules/PageShell/PageShell.tsx";
 import styles from "./Home.module.scss";
 
 const Home = () => {
