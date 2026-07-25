@@ -1,9 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useSignup } from "../../hooks/useSignup.ts";
-import PageShell from "../../components/PageShell/PageShell.tsx";
-import AuthCard from "../../components/AuthCard/AuthCard.tsx";
-import FormField from "../../components/FormField/FormField.tsx";
+import PageShell from "../../modules/PageShell/PageShell.tsx";
+import AuthCard from "../../modules/AuthCard/AuthCard.tsx";
+import FormField from "../../modules/FormField/FormField.tsx";
 import { signupSchema, type SignupFormValues } from "./Signup.schema.ts";
 
 const Signup = () => {
@@ -71,3 +71,4 @@ const Signup = () => {
 };
 
 export default Signup;
+
