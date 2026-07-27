@@ -12,11 +12,15 @@ export const useFoodSearch = () => {
     setIsLoading(true);
 
     try {
-      const foods = await searchFoods(query);
-      setResults(foods);
+      const { results } = await searchFoods(query);
+      setResults(results);
     } catch (err) {
       console.error(err);
-      setError(err instanceof ApiError ? err.message : "Something went wrong, please try again");
+      setError(
+        err instanceof ApiError
+          ? err.message
+          : "Something went wrong, please try again",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -24,3 +28,4 @@ export const useFoodSearch = () => {
 
   return { search, results, isLoading, error };
 };
+
