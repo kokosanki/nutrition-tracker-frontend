@@ -7,6 +7,7 @@ export interface Food {
   proteinPer100g: number | null;
   carbsPer100g: number | null;
   fatPer100g: number | null;
+  serving_size: number | null;
 }
 
 export const searchFoods = (query: string): Promise<Food[]> => {
