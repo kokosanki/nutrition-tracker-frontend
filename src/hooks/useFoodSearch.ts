@@ -1,31 +1,24 @@
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { searchFoods, type Food } from "@/api/foods.ts";
 import { ApiError } from "@/api/client.ts";
 
-export const useFoodSearch = () => {
-  const [results, setResults] = useState<Food[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+export const useFoodSearch = (query: string) => {
+  const trimmed = query.trim();
 
-  const search = async (query: string) => {
-    setError(null);
-    setIsLoading(true);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["foodSearch", trimmed],
+    queryFn: () => searchFoods(trimmed),
+    enabled: trimmed.length > 0,
+    staleTime: 5 * 60 * 1000,
+  });
 
-    try {
-      const { results } = await searchFoods(query);
-      setResults(results);
-    } catch (err) {
-      console.error(err);
-      setError(
-        err instanceof ApiError
-          ? err.message
-          : "Something went wrong, please try again",
-      );
-    } finally {
-      setIsLoading(false);
-    }
+  return {
+    results: data?.results ?? ([] as Food[]),
+    isLoading,
+    error: error
+      ? error instanceof ApiError
+        ? error.message
+        : "Something went wrong, please try again"
+      : null,
   };
-
-  return { search, results, isLoading, error };
 };
-

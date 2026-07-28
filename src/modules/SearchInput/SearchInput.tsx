@@ -6,11 +6,12 @@ import styles from "./SearchInput.module.scss";
 
 interface SearchInputProps {
   placeholder?: string;
+  defaultValue?: string;
   onSearch: (searchText: string) => void;
 }
 
-const SearchInput = ({ placeholder, onSearch }: SearchInputProps) => {
-  const [value, setValue] = useState("");
+const SearchInput = ({ placeholder, defaultValue = "", onSearch }: SearchInputProps) => {
+  const [value, setValue] = useState(defaultValue);
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === "Enter") {

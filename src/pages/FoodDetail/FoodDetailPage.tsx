@@ -19,7 +19,7 @@ const FoodDetailPage = () => {
     return <Navigate to="/" replace />;
   }
 
-  const food = (location.state as { food?: Food } | null)?.food;
+  const { food, backTo } = (location.state as { food?: Food; backTo?: string } | null) ?? {};
 
   if (!food || !food.offId) {
     return <Navigate to={`/mealLog/${mealType}`} replace />;
@@ -44,7 +44,7 @@ const FoodDetailPage = () => {
   return (
     <PageShell center={false}>
       <Header />
-      <Link to={`/mealLog/${mealType}`} className={styles.backLink}>
+      <Link to={backTo ?? `/mealLog/${mealType}`} className={styles.backLink}>
         <FontAwesomeIcon icon={faArrowLeft} /> Back
       </Link>
       <h1>{food.name}</h1>

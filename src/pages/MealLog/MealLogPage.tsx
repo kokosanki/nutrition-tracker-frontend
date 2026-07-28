@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import PageShell from "@/modules/PageShell/PageShell";
@@ -13,14 +13,23 @@ import styles from "./MealLogPage.module.scss";
 const MealLogPage = () => {
   const { mealType } = useParams<{ mealType: string }>();
   const navigate = useNavigate();
-  const { search, results } = useFoodSearch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("q") ?? "";
+  const { results } = useFoodSearch(query);
 
   if (!isMealType(mealType)) {
     return <Navigate to="/" replace />;
   }
 
+  const handleSearch = (searchText: string): void => {
+    setSearchParams(searchText ? { q: searchText } : {});
+  };
+
   const handleSelect = (food: Food): void => {
-    navigate(`/mealLog/${mealType}/foods/${food.offId}`, { state: { food } });
+    const backTo = query
+      ? `/mealLog/${mealType}?${searchParams.toString()}`
+      : `/mealLog/${mealType}`;
+    navigate(`/mealLog/${mealType}/foods/${food.offId}`, { state: { food, backTo } });
   };
 
   return (
@@ -30,7 +39,7 @@ const MealLogPage = () => {
         <FontAwesomeIcon icon={faArrowLeft} /> Back
       </Link>
       <h1>{MEAL_TYPE_LABELS[mealType]}</h1>
-      <SearchInput placeholder="Search for a food" onSearch={search} />
+      <SearchInput placeholder="Search for a food" defaultValue={query} onSearch={handleSearch} />
       <FoodSearchResults results={results} onSelect={handleSelect} />
     </PageShell>
   );
