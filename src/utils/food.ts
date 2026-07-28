@@ -8,6 +8,18 @@ export const getServingDisplay = (food: Food) => {
   const caloriesLabel = hasServingSize ? "per serving" : "per 100g";
   const endsInLetter = /[a-zA-Z]$/.test(String(servingSize));
   const servingUnit = endsInLetter ? "" : "g";
+  const correctedServingSize = servingSizeQuantity ?? 100;
+  const caloriesPerCorrectedServingSize =
+    food.caloriesPer100g != null
+      ? Math.round((food.caloriesPer100g * correctedServingSize) / 100)
+      : null;
 
-  return { caloriesLabel, servingSize, servingSizeQuantity, servingUnit };
+  return {
+    caloriesLabel,
+    servingSize,
+    servingSizeQuantity,
+    servingUnit,
+    correctedServingSize,
+    caloriesPerCorrectedServingSize,
+  };
 };

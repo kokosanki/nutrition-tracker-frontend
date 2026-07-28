@@ -6,6 +6,7 @@ import Header from "@/modules/Header/Header";
 import { useLogFood } from "@/hooks/useLogFood";
 import { isMealType, MEAL_TYPE_LABELS } from "@/constants/mealTypes.ts";
 import { getServingDisplay } from "@/utils/food.ts";
+import FoodServingSummary from "@/modules/FoodServingSummary/FoodServingSummary";
 import type { Food } from "@/api/foods.ts";
 import styles from "./FoodDetailPage.module.scss";
 
@@ -24,8 +25,7 @@ const FoodDetailPage = () => {
     return <Navigate to={`/mealLog/${mealType}`} replace />;
   }
 
-  const { caloriesLabel, servingSize, servingSizeQuantity } = getServingDisplay(food);
-  const correctedServingSize = servingSizeQuantity ?? 100;
+  const { correctedServingSize } = getServingDisplay(food);
 
   const handleAdd = (): void => {
     logFood({
@@ -41,11 +41,6 @@ const FoodDetailPage = () => {
     });
   };
 
-  const caloriesPerCorrectedServingSize =
-    food.caloriesPer100g != null
-      ? Math.round((food.caloriesPer100g * correctedServingSize) / 100)
-      : null;
-
   return (
     <PageShell center={false}>
       <Header />
@@ -53,10 +48,7 @@ const FoodDetailPage = () => {
         <FontAwesomeIcon icon={faArrowLeft} /> Back
       </Link>
       <h1>{food.name}</h1>
-      <p className={styles.details}>
-        {caloriesPerCorrectedServingSize ?? "?"} kcal {caloriesLabel} ·
-        {servingSize} serving
-      </p>
+      <FoodServingSummary food={food} />
       <ul className={styles.macros}>
         <li>
           Calories per 100g:{" "}
