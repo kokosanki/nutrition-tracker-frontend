@@ -7,7 +7,7 @@ export interface Food {
   proteinPer100g: number | null;
   carbsPer100g: number | null;
   fatPer100g: number | null;
-  serving: number | null;
+  serving: number | string | null;
 }
 
 export interface FoodResults {

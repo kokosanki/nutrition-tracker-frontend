@@ -1,24 +1,25 @@
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import SearchInput from "@/modules/SearchInput/SearchInput";
-import FoodSearchResults from "@/modules/FoodSearchResults/FoodSearchResults";
-import { useFoodSearch } from "@/hooks/useFoodSearch";
+import { MEAL_TYPE_LABELS, type MealType } from "@/constants/mealTypes.ts";
 import styles from "./MealLog.module.scss";
 
-const MealLog = () => {
-  const logIt = (): void => console.log("logIt");
-  const { search, results } = useFoodSearch();
+interface MealLogProps {
+  mealType: MealType;
+}
+
+const MealLog = ({ mealType }: MealLogProps) => {
+  const navigate = useNavigate();
+  const label = MEAL_TYPE_LABELS[mealType];
 
   return (
     <div>
-      <h2>Breakfast</h2>
-      <SearchInput placeholder="Search for a food" onSearch={search} />
-      <FoodSearchResults results={results} />
+      <h2>{label}</h2>
       <button
-        onClick={logIt}
+        onClick={() => navigate(`/mealLog/${mealType}`)}
         className={styles.logButton}
         type="button"
-        aria-label="Log out"
+        aria-label={`Add food to ${label}`}
       >
         <FontAwesomeIcon icon={faPlus} />
       </button>

@@ -1,0 +1,29 @@
+@use "@/styles/mixins" as *;
+
+.backLink {
+  @include back-link;
+}
+
+.details {
+  color: var(--card-subtext);
+}
+
+.macros {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--card-text);
+}
+
+.errorText {
+  font-size: 14px;
+  color: var(--error);
+}
+
+.addButton {
+  @include button;
+  margin-top: 20px;
+}

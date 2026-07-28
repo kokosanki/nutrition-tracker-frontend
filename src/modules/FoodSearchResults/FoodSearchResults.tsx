@@ -1,27 +1,31 @@
 import type { Food } from "@/api/foods.ts";
+import { getServingDisplay } from "@/utils/food.ts";
 import styles from "./FoodSearchResults.module.scss";
 
 interface FoodSearchResultsProps {
   results: Food[];
+  onSelect: (food: Food) => void;
 }
 
-const FoodSearchResults = ({ results }: FoodSearchResultsProps) => {
+const FoodSearchResults = ({ results, onSelect }: FoodSearchResultsProps) => {
   return (
     <ul className={styles.list}>
       {results.map((food, index) => {
-        const hasServingSize = food.serving != null;
-        const servingSize = hasServingSize ? food.serving : 100;
-        const caloriesLabel = hasServingSize ? "per serving" : "per 100g";
-        const endsInLetter = /[a-zA-Z]$/.test(String(servingSize));
-        const servingUnit = endsInLetter ? "" : "g";
+        const { caloriesLabel, servingSize, servingUnit } = getServingDisplay(food);
 
         return (
           <li key={food.offId ?? index} className={styles.item}>
-            <span className={styles.name}>{food.name}</span>
-            <span className={styles.details}>
-              {food.caloriesPer100g ?? "?"} kcal {caloriesLabel} · {servingSize}
-              {servingUnit} serving
-            </span>
+            <button
+              type="button"
+              className={styles.itemButton}
+              onClick={() => onSelect(food)}
+            >
+              <span className={styles.name}>{food.name}</span>
+              <span className={styles.details}>
+                {food.caloriesPer100g ?? "?"} kcal {caloriesLabel} · {servingSize}
+                {servingUnit} serving
+              </span>
+            </button>
           </li>
         );
       })}
@@ -30,4 +34,3 @@ const FoodSearchResults = ({ results }: FoodSearchResultsProps) => {
 };
 
 export default FoodSearchResults;
-
