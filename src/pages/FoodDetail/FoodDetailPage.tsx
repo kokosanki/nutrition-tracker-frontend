@@ -31,13 +31,14 @@ const FoodDetailPage = () => {
     logFood({
       loggedDate: new Date().toISOString().slice(0, 10),
       mealType,
-      productName: food.name ?? "",
+      name: food.name ?? "",
       offId: food.offId,
+      serving: food.serving != null ? String(food.serving) : null,
       amountGrams: correctedServingSize,
-      caloriesPer100g: food.caloriesPer100g ?? 0,
-      proteinPer100g: food.proteinPer100g ?? undefined,
-      carbsPer100g: food.carbsPer100g ?? undefined,
-      fatPer100g: food.fatPer100g ?? undefined,
+      caloriesPer100g: food.caloriesPer100g,
+      proteinPer100g: food.proteinPer100g,
+      carbsPer100g: food.carbsPer100g,
+      fatPer100g: food.fatPer100g,
     });
   };
 
