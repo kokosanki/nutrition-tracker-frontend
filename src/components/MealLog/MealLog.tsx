@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { MEAL_TYPE_LABELS, type MealType } from "@/constants/mealTypes.ts";
 import type { LoggedFood } from "@/api/mealLogs.ts";
-import LoggedFoodList from "./LoggedFoodList";
+import LoggedFoodList from "@/components/LoggedFoodList/LoggedFoodList";
 import styles from "./MealLog.module.scss";
 
 interface MealLogProps {

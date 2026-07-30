@@ -4,7 +4,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import PageShell from "@/modules/PageShell/PageShell";
 import Header from "@/modules/Header/Header";
 import SearchInput from "@/modules/SearchInput/SearchInput";
-import FoodSearchResults from "@/modules/FoodSearchResults/FoodSearchResults";
+import FoodSearchResults from "@/modules/FoodSearchResults";
 import { useFoodSearch } from "@/hooks/useFoodSearch";
 import { isMealType, MEAL_TYPE_LABELS } from "@/constants/mealTypes.ts";
 import type { Food } from "@/api/foods.ts";

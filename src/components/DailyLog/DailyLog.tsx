@@ -1,5 +1,5 @@
 import styles from "./DailyLog.module.scss";
-import MealLog from "./MealLog";
+import MealLog from "@/components/MealLog/MealLog";
 import { MEAL_TYPES } from "@/constants/mealTypes.ts";
 import { useFoodJournal } from "@/hooks/useFoodJournal.ts";
 import { getTodayDateString } from "@/utils/date.ts";
