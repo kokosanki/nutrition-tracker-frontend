@@ -11,11 +11,12 @@ export const getLoggedFoodCalories = (food: {
 export const getServingDisplay = (food: Food) => {
   const hasServingSize = food.serving != null;
   const servingSize = hasServingSize ? food.serving : '100g';
-  const servingSizeMatch = String(servingSize).match(/(\d+(?:\.\d+)?)\s*(?:g|ml)\b/i);
+  const servingSizeMatch = String(servingSize).match(/(\d+(?:\.\d+)?)\s*(g|ml)\b/i);
   const servingSizeQuantity = servingSizeMatch ? parseFloat(servingSizeMatch[1]) : null;
   const caloriesLabel = hasServingSize ? "per serving" : "per 100g";
   const endsInLetter = /[a-zA-Z]$/.test(String(servingSize));
-  const servingUnit = endsInLetter ? "" : "g";
+  const unit: "g" | "ml" = servingSizeMatch?.[2]?.toLowerCase() === "ml" ? "ml" : "g";
+  const servingUnit = endsInLetter ? "" : unit;
   const correctedServingSize = servingSizeQuantity ?? 100;
   const caloriesPerCorrectedServingSize =
     food.caloriesPer100g != null
@@ -27,6 +28,7 @@ export const getServingDisplay = (food: Food) => {
     servingSize,
     servingSizeQuantity,
     servingUnit,
+    unit,
     correctedServingSize,
     caloriesPerCorrectedServingSize,
   };

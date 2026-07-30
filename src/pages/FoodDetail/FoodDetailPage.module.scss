@@ -19,6 +19,49 @@
   color: var(--error);
 }
 
+.servingOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.chip {
+  padding: 8px 14px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--card-text);
+  background: var(--card-bg);
+  border: 1px solid var(--card-subtext);
+  border-radius: 999px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--accent);
+  }
+}
+
+.chipActive {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+
+  &:hover {
+    background: var(--accent-hover);
+  }
+}
+
+.amountRow {
+  margin-top: 12px;
+}
+
+.calorieHint {
+  margin: 12px 0 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
 .addButton {
   @include button;
   margin-top: 20px;
