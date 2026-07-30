@@ -9,7 +9,7 @@ export interface LogFoodPayload {
   proteinPer100g?: number | null;
   carbsPer100g?: number | null;
   fatPer100g?: number | null;
-  amountGrams: number;
+  amount: number;
   loggedDate: string;
   mealType: MealType;
 }

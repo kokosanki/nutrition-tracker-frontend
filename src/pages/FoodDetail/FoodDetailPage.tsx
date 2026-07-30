@@ -34,7 +34,8 @@ const FoodDetailPage = () => {
     return <Navigate to="/" replace />;
   }
 
-  const { food, backTo } = (location.state as { food?: Food; backTo?: string } | null) ?? {};
+  const { food, backTo } =
+    (location.state as { food?: Food; backTo?: string } | null) ?? {};
 
   if (!food || !food.offId) {
     return <Navigate to={`/mealLog/${mealType}`} replace />;
@@ -54,14 +55,19 @@ const FoodDetailPage = () => {
   });
 
   const amount = watch("amount");
-  const numericAmount = typeof amount === "number" ? amount : parseFloat(String(amount));
-  const previewCalories =
-    !Number.isNaN(numericAmount)
-      ? getLoggedFoodCalories({ caloriesPer100g: food.caloriesPer100g, amountGrams: numericAmount })
-      : null;
+  const numericAmount =
+    typeof amount === "number" ? amount : parseFloat(String(amount));
+  const previewCalories = !Number.isNaN(numericAmount)
+    ? getLoggedFoodCalories({
+        caloriesPer100g: food.caloriesPer100g,
+        amount: numericAmount,
+      })
+    : null;
 
   const handlePickServing = (multiplier: number): void => {
-    setValue("amount", multiplier * correctedServingSize, { shouldValidate: true });
+    setValue("amount", multiplier * correctedServingSize, {
+      shouldValidate: true,
+    });
   };
 
   const onSubmit = (data: AddToLogFormValues): void => {
@@ -71,7 +77,7 @@ const FoodDetailPage = () => {
       name: food.name ?? "",
       offId: food.offId,
       serving: food.serving != null ? String(food.serving) : null,
-      amountGrams: data.amount,
+      amount: data.amount,
       caloriesPer100g: food.caloriesPer100g,
       proteinPer100g: food.proteinPer100g,
       carbsPer100g: food.carbsPer100g,
@@ -143,3 +149,4 @@ const FoodDetailPage = () => {
 };
 
 export default FoodDetailPage;
+

@@ -1,5 +1,5 @@
 import type { LoggedFood } from "@/api/mealLogs.ts";
-import { getLoggedFoodCalories } from "@/utils/food.ts";
+import { getLoggedFoodCalories, getServingUnit } from "@/utils/food.ts";
 import FoodListItem from "@/modules/FoodListItem/FoodListItem";
 import listStyles from "@/modules/FoodListItem/FoodListItem.module.scss";
 import styles from "./LoggedFoodList.module.scss";
@@ -19,7 +19,7 @@ const LoggedFoodList = ({ items }: LoggedFoodListProps) => {
         <FoodListItem
           key={item.id}
           name={item.name}
-          details={`${getLoggedFoodCalories(item) ?? "?"} kcal · ${item.amountGrams}g`}
+          details={`${getLoggedFoodCalories(item) ?? "?"} kcal · ${item.amount}${getServingUnit(item.serving)}`}
         />
       ))}
     </ul>
@@ -27,3 +27,4 @@ const LoggedFoodList = ({ items }: LoggedFoodListProps) => {
 };
 
 export default LoggedFoodList;
+
