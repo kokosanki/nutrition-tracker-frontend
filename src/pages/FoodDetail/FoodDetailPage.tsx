@@ -6,6 +6,7 @@ import Header from "@/modules/Header/Header";
 import { useLogFood } from "@/hooks/useLogFood";
 import { isMealType, MEAL_TYPE_LABELS } from "@/constants/mealTypes.ts";
 import { getServingDisplay } from "@/utils/food.ts";
+import { getTodayDateString } from "@/utils/date.ts";
 import FoodServingSummary from "@/modules/FoodServingSummary/FoodServingSummary";
 import type { Food } from "@/api/foods.ts";
 import styles from "./FoodDetailPage.module.scss";
@@ -29,7 +30,7 @@ const FoodDetailPage = () => {
 
   const handleAdd = (): void => {
     logFood({
-      loggedDate: new Date().toISOString().slice(0, 10),
+      loggedDate: getTodayDateString(),
       mealType,
       name: food.name ?? "",
       offId: food.offId,

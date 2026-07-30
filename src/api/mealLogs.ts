@@ -14,9 +14,24 @@ export interface LogFoodPayload {
   mealType: MealType;
 }
 
+export interface LoggedFood extends LogFoodPayload {
+  id: number;
+}
+
+export interface MealJournalResults {
+  loggedFoods: LoggedFood[];
+}
+
 export const logFood = (payload: LogFoodPayload): Promise<void> => {
   return apiFetch<void>("/logs", {
     method: "POST",
     body: JSON.stringify(payload),
   });
 };
+
+export const getFoodJournal = (date: string): Promise<MealJournalResults> => {
+  return apiFetch<MealJournalResults>(`/logs?date=${date}`, {
+    method: "GET",
+  });
+};
+

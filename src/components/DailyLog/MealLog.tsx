@@ -2,13 +2,16 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { MEAL_TYPE_LABELS, type MealType } from "@/constants/mealTypes.ts";
+import type { LoggedFood } from "@/api/mealLogs.ts";
+import LoggedFoodList from "./LoggedFoodList";
 import styles from "./MealLog.module.scss";
 
 interface MealLogProps {
   mealType: MealType;
+  items: LoggedFood[];
 }
 
-const MealLog = ({ mealType }: MealLogProps) => {
+const MealLog = ({ mealType, items }: MealLogProps) => {
   const navigate = useNavigate();
   const label = MEAL_TYPE_LABELS[mealType];
 
@@ -23,6 +26,7 @@ const MealLog = ({ mealType }: MealLogProps) => {
       >
         <FontAwesomeIcon icon={faPlus} />
       </button>
+      <LoggedFoodList items={items} />
     </div>
   );
 };
