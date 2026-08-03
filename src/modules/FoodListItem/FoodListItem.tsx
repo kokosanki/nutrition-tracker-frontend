@@ -1,16 +1,17 @@
 import type { ReactNode } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import styles from "./FoodListItem.module.scss";
 
 interface FoodListItemProps {
   name: string;
   details: ReactNode;
   onClick?: () => void;
+  onEdit?: () => void;
   onDelete?: () => void;
 }
 
-const FoodListItem = ({ name, details, onClick, onDelete }: FoodListItemProps) => {
+const FoodListItem = ({ name, details, onClick, onEdit, onDelete }: FoodListItemProps) => {
   const content = (
     <>
       <span className={styles.name}>{name}</span>
@@ -26,6 +27,16 @@ const FoodListItem = ({ name, details, onClick, onDelete }: FoodListItemProps) =
         </button>
       ) : (
         <div className={styles.itemStatic}>{content}</div>
+      )}
+      {onEdit && (
+        <button
+          type="button"
+          className={styles.editButton}
+          onClick={onEdit}
+          aria-label={`Edit ${name}`}
+        >
+          <FontAwesomeIcon icon={faPen} />
+        </button>
       )}
       {onDelete && (
         <button

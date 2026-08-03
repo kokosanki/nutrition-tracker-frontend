@@ -41,3 +41,16 @@ export const deleteLoggedFood = (id: number): Promise<void> => {
   });
 };
 
+export interface UpdateLogPayload {
+  amount?: number;
+  mealType?: MealType;
+  loggedDate?: string;
+}
+
+export const updateLoggedFood = (id: number, payload: UpdateLogPayload): Promise<void> => {
+  return apiFetch<void>(`/logs/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(payload),
+  });
+};
+

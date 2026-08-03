@@ -56,22 +56,27 @@
   color: var(--card-subtext);
 }
 
+.editButton,
 .deleteButton {
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
-  background: var(--card-bg);
+  background: none;
   border: none;
   border-radius: 12px;
-  box-shadow: var(--shadow);
   color: var(--card-subtext);
   cursor: pointer;
+}
 
-  &:hover,
-  &:focus-visible {
-    color: var(--error);
-  }
+.editButton:hover,
+.editButton:focus-visible {
+  color: var(--accent);
+}
+
+.deleteButton:hover,
+.deleteButton:focus-visible {
+  color: var(--error);
 }
 

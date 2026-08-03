@@ -1,0 +1,28 @@
+@use "@/styles/mixins" as *;
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.cancelButton {
+  flex: 1;
+  padding: 12px;
+  font: inherit;
+  background: none;
+  border: 1px solid var(--input-border);
+  border-radius: 16px;
+  color: var(--card-text);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--accent-bg);
+  }
+}
+
+.saveButton {
+  @include button;
+  flex: 1;
+}
