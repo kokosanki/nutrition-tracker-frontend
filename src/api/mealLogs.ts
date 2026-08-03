@@ -35,3 +35,9 @@ export const getFoodJournal = (date: string): Promise<MealJournalResults> => {
   });
 };
 
+export const deleteLoggedFood = (id: number): Promise<void> => {
+  return apiFetch<void>(`/logs/${id}`, {
+    method: "DELETE",
+  });
+};
+

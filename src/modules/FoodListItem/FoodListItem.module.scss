@@ -1,3 +1,5 @@
+@use "@/styles/mixins" as *;
+
 .list {
   list-style: none;
   margin: 12px 0 0;
@@ -7,18 +9,24 @@
   gap: 8px;
 }
 
+.item {
+  @include list-item;
+
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
 .itemButton,
 .itemStatic {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
   padding: 10px 14px;
-  background: var(--card-bg);
-  border: none;
   border-radius: 12px;
-  box-shadow: var(--shadow);
   font: inherit;
   text-align: left;
 }
@@ -28,6 +36,8 @@
 }
 
 .itemButton {
+  background: none;
+  border: none;
   cursor: pointer;
 
   &:hover,
@@ -45,3 +55,23 @@
   font-size: 0.875rem;
   color: var(--card-subtext);
 }
+
+.deleteButton {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  background: var(--card-bg);
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  color: var(--card-subtext);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--error);
+  }
+}
+

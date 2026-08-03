@@ -34,3 +34,9 @@
   }
 }
 
+@mixin list-item {
+  background: var(--card-bg);
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}

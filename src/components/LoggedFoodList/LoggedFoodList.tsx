@@ -2,6 +2,7 @@ import type { LoggedFood } from "@/api/mealLogs.ts";
 import { getLoggedFoodCalories, getServingUnit } from "@/utils/food.ts";
 import FoodListItem from "@/modules/FoodListItem/FoodListItem";
 import listStyles from "@/modules/FoodListItem/FoodListItem.module.scss";
+import { useDeleteLoggedFood } from "@/hooks/useDeleteLoggedFood.ts";
 import styles from "./LoggedFoodList.module.scss";
 
 interface LoggedFoodListProps {
@@ -9,6 +10,8 @@ interface LoggedFoodListProps {
 }
 
 const LoggedFoodList = ({ items }: LoggedFoodListProps) => {
+  const { deleteLoggedFood } = useDeleteLoggedFood();
+
   if (items.length === 0) {
     return <p className={styles.empty}>No items logged yet.</p>;
   }
@@ -20,6 +23,7 @@ const LoggedFoodList = ({ items }: LoggedFoodListProps) => {
           key={item.id}
           name={item.name}
           details={`${getLoggedFoodCalories(item) ?? "?"} kcal · ${item.amount}${getServingUnit(item.serving)}`}
+          onDelete={() => deleteLoggedFood(item.id)}
         />
       ))}
     </ul>
