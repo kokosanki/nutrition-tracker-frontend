@@ -25,23 +25,25 @@ const SERVING_MULTIPLIERS = [
   { label: "2 servings", multiplier: 2 },
 ];
 
+const EMPTY_FOOD: Food = {
+  name: undefined,
+  offId: undefined,
+  caloriesPer100g: null,
+  proteinPer100g: null,
+  carbsPer100g: null,
+  fatPer100g: null,
+  serving: null,
+};
+
 const FoodDetailPage = () => {
   const { mealType } = useParams<{ mealType: string }>();
   const location = useLocation();
   const { logFood, isLoading, error } = useLogFood();
 
-  if (!isMealType(mealType)) {
-    return <Navigate to="/" replace />;
-  }
-
   const { food, backTo } =
     (location.state as { food?: Food; backTo?: string } | null) ?? {};
 
-  if (!food || !food.offId) {
-    return <Navigate to={`/mealLog/${mealType}`} replace />;
-  }
-
-  const { correctedServingSize, unit } = getServingDisplay(food);
+  const { correctedServingSize, unit } = getServingDisplay(food ?? EMPTY_FOOD);
 
   const {
     register,
@@ -53,6 +55,14 @@ const FoodDetailPage = () => {
     resolver: zodResolver(addToLogSchema),
     defaultValues: { amount: correctedServingSize },
   });
+
+  if (!isMealType(mealType)) {
+    return <Navigate to="/" replace />;
+  }
+
+  if (!food || !food.offId) {
+    return <Navigate to={`/mealLog/${mealType}`} replace />;
+  }
 
   const amount = watch("amount");
   const numericAmount =
