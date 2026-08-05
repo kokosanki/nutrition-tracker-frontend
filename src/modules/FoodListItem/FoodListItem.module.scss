@@ -1,0 +1,82 @@
+@use "@/styles/mixins" as *;
+
+.list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  @include list-item;
+
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.itemButton,
+.itemStatic {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font: inherit;
+  text-align: left;
+}
+
+.itemStatic {
+  width: auto;
+}
+
+.itemButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+}
+
+.name {
+  color: var(--card-text);
+  font-weight: 600;
+}
+
+.details {
+  font-size: 0.875rem;
+  color: var(--card-subtext);
+}
+
+.editButton,
+.deleteButton {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  background: none;
+  border: none;
+  border-radius: 12px;
+  color: var(--card-subtext);
+  cursor: pointer;
+}
+
+.editButton:hover,
+.editButton:focus-visible {
+  color: var(--accent);
+}
+
+.deleteButton:hover,
+.deleteButton:focus-visible {
+  color: var(--error);
+}
+

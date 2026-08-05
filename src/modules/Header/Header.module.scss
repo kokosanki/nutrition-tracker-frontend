@@ -1,0 +1,19 @@
+@use "../../styles/mixins" as *;
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.logoutButton {
+  @include button-round;
+}
+
+.errorText {
+  font-size: 14px;
+  color: var(--error);
+}
+

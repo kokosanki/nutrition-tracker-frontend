@@ -1,9 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useLogin } from "../../hooks/useLogin.ts";
-import PageShell from "../../components/PageShell/PageShell.tsx";
-import AuthCard from "../../components/AuthCard/AuthCard.tsx";
-import FormField from "../../components/FormField/FormField.tsx";
+import { useLogin } from "@/hooks/useLogin.ts";
+import PageShell from "@/modules/PageShell/PageShell.tsx";
+import AuthCard from "@/modules/AuthCard/AuthCard.tsx";
+import FormField from "@/modules/FormField/FormField.tsx";
 import { loginSchema, type LoginFormValues } from "./Login.schema.ts";
 
 const Login = () => {
@@ -55,3 +55,4 @@ const Login = () => {
 };
 
 export default Login;
+

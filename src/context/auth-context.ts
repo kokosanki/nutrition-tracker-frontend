@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import type { CurrentUser } from '../api/auth.ts'
+import type { CurrentUser } from '@/api/auth.ts'
 
 export interface AuthContextValue {
   user: CurrentUser | null

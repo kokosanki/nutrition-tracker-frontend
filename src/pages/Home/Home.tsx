@@ -1,24 +1,16 @@
-import { useLogout } from "../../hooks/useLogout.ts";
-import PageShell from "../../components/PageShell/PageShell.tsx";
+import PageShell from "@/modules/PageShell/PageShell";
+import DailyLog from "@/components/DailyLog/DailyLog";
+import Header from "@/modules/Header/Header";
 import styles from "./Home.module.scss";
 
 const Home = () => {
-  const { logout, error } = useLogout();
-
   return (
-    <PageShell>
-      <div className={styles.content}>
-        <button
-          onClick={logout}
-          className={styles.logoutButton}
-          type="button"
-        >
-          Log out
-        </button>
-        {error && <p className={styles.errorText}>{error}</p>}
-      </div>
+    <PageShell center={false} className={styles.homeShell}>
+      <Header />
+      <DailyLog />
     </PageShell>
   );
 };
 
 export default Home;
+

@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react'
-import { getCurrentUser, type CurrentUser } from '../api/auth.ts'
+import { getCurrentUser, type CurrentUser } from '@/api/auth.ts'
 import { AuthContext } from './auth-context.ts'
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {

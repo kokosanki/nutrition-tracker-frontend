@@ -12,3 +12,31 @@
     background: var(--accent-hover);
   }
 }
+
+@mixin button-round {
+  @include button;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin back-link {
+  display: inline-block;
+  color: var(--card-subtext);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+@mixin list-item {
+  background: var(--card-bg);
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
