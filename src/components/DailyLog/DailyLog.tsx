@@ -13,6 +13,7 @@ const DailyLog = () => {
   const handlePrevDay = () => setDate((current) => addDays(current, -1));
   const handleNextDay = () => setDate((current) => addDays(current, 1));
   const handleToday = () => setDate(getTodayDateString());
+  const handleSelectDate = (selectedDate: string) => setDate(selectedDate);
 
   return (
     <div className={styles.dailyLog}>
@@ -22,6 +23,7 @@ const DailyLog = () => {
         onPrevDay={handlePrevDay}
         onNextDay={handleNextDay}
         onToday={handleToday}
+        onSelectDate={handleSelectDate}
       />
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}

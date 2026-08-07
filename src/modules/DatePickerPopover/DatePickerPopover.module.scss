@@ -1,0 +1,49 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  color: var(--card-subtext);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    color: var(--accent);
+    background: var(--accent-bg);
+  }
+}
+
+.popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 20;
+  padding: 12px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+
+  :global(.rdp-root) {
+    --rdp-accent-color: var(--accent);
+    --rdp-accent-background-color: var(--accent-bg);
+    --rdp-today-color: var(--accent);
+    --rdp-day_button-border-radius: 8px;
+    --rdp-day-width: 36px;
+    --rdp-day-height: 36px;
+    --rdp-day_button-width: 34px;
+    --rdp-day_button-height: 34px;
+    color: var(--card-text);
+    font-family: var(--sans);
+  }
+}

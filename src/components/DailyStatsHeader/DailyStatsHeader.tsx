@@ -3,6 +3,7 @@ import { faArrowLeft, faChevronLeft, faChevronRight } from "@fortawesome/free-so
 import type { LoggedFood } from "@/api/mealLogs.ts";
 import { getDailyTotals } from "@/utils/food.ts";
 import { getDateLabel, getTodayDateString } from "@/utils/date.ts";
+import DatePickerPopover from "@/modules/DatePickerPopover/DatePickerPopover";
 import styles from "./DailyStatsHeader.module.scss";
 
 interface DailyStatsHeaderProps {
@@ -11,9 +12,17 @@ interface DailyStatsHeaderProps {
   onPrevDay: () => void;
   onNextDay: () => void;
   onToday: () => void;
+  onSelectDate: (date: string) => void;
 }
 
-const DailyStatsHeader = ({ date, loggedFoods, onPrevDay, onNextDay, onToday }: DailyStatsHeaderProps) => {
+const DailyStatsHeader = ({
+  date,
+  loggedFoods,
+  onPrevDay,
+  onNextDay,
+  onToday,
+  onSelectDate,
+}: DailyStatsHeaderProps) => {
   const totals = getDailyTotals(loggedFoods);
   const isToday = date === getTodayDateString();
 
@@ -34,6 +43,7 @@ const DailyStatsHeader = ({ date, loggedFoods, onPrevDay, onNextDay, onToday }: 
               <FontAwesomeIcon icon={faArrowLeft} /> Back to today
             </button>
           )}
+          <DatePickerPopover date={date} onSelect={onSelectDate} />
         </div>
         <div className={styles.dateNav}>
           <button
