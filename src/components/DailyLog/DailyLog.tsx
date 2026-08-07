@@ -1,5 +1,6 @@
 import styles from "./DailyLog.module.scss";
 import MealLog from "@/components/MealLog/MealLog";
+import DailyStatsHeader from "@/components/DailyStatsHeader/DailyStatsHeader";
 import { MEAL_TYPES } from "@/constants/mealTypes.ts";
 import { useFoodJournal } from "@/hooks/useFoodJournal.ts";
 import { getTodayDateString } from "@/utils/date.ts";
@@ -10,7 +11,7 @@ const DailyLog = () => {
 
   return (
     <div className={styles.dailyLog}>
-      daily log
+      <DailyStatsHeader loggedFoods={loggedFoods} />
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {MEAL_TYPES.map((mealType) => (

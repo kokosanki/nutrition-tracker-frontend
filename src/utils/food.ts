@@ -1,4 +1,5 @@
 import type { Food } from "@/api/foods.ts";
+import type { LoggedFood } from "@/api/mealLogs.ts";
 
 export const getLoggedFoodCalories = (food: {
   caloriesPer100g: number | null;
@@ -7,6 +8,22 @@ export const getLoggedFoodCalories = (food: {
   food.caloriesPer100g != null
     ? Math.round((food.caloriesPer100g * food.amount) / 100)
     : null;
+
+const sumPer100g = (
+  loggedFoods: LoggedFood[],
+  key: "caloriesPer100g" | "proteinPer100g" | "carbsPer100g" | "fatPer100g",
+) =>
+  loggedFoods.reduce((total, food) => {
+    const perGram = food[key];
+    return perGram != null ? total + (perGram * food.amount) / 100 : total;
+  }, 0);
+
+export const getDailyTotals = (loggedFoods: LoggedFood[]) => ({
+  calories: Math.round(sumPer100g(loggedFoods, "caloriesPer100g")),
+  protein: Math.round(sumPer100g(loggedFoods, "proteinPer100g")),
+  carbs: Math.round(sumPer100g(loggedFoods, "carbsPer100g")),
+  fat: Math.round(sumPer100g(loggedFoods, "fatPer100g")),
+});
 
 export const getServingUnit = (
   serving: string | number | null | undefined,

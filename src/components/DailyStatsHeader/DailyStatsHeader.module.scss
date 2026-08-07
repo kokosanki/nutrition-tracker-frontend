@@ -1,0 +1,85 @@
+@use "@/styles/mixins" as *;
+
+.statsHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dateBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--card-subtext);
+  font-size: 0.9rem;
+}
+
+.date {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--card-text);
+}
+
+.caloriesCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-radius: 20px;
+  background: var(--stat-fill);
+  color: var(--stat-fill-text);
+}
+
+.caloriesLabel {
+  font-weight: 600;
+}
+
+.caloriesValue {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.macroRow {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.macroCard {
+  @include list-item;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 8px;
+}
+
+.macroValue {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.macroLabel {
+  color: var(--card-subtext);
+  font-size: 0.85rem;
+}
+
+.protein {
+  color: var(--macro-protein);
+}
+
+.carbs {
+  color: var(--macro-carbs);
+}
+
+.fat {
+  color: var(--macro-fat);
+}

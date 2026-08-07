@@ -11,6 +11,11 @@
   --input-text: #3a332c;
   --input-placeholder: #b3ab9f;
   --error: #d64545;
+  --stat-fill: #5c6440;
+  --stat-fill-text: #f4f1e8;
+  --macro-protein: #c9754f;
+  --macro-carbs: #558a45;
+  --macro-fat: #2a2420;
   --shadow:
     rgba(43, 33, 24, 0.1) 0 20px 40px -12px, rgba(43, 33, 24, 0.06) 0 8px 16px -8px;
 
