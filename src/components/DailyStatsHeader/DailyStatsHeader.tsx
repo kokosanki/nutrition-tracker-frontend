@@ -1,14 +1,30 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import type { LoggedFood } from "@/api/mealLogs.ts";
 import { getDailyTotals } from "@/utils/food.ts";
-import { getTodayLabel } from "@/utils/date.ts";
+import { getDateLabel, getTodayDateString } from "@/utils/date.ts";
+import DatePickerPopover from "@/modules/DatePickerPopover/DatePickerPopover";
 import styles from "./DailyStatsHeader.module.scss";
 
 interface DailyStatsHeaderProps {
+  date: string;
   loggedFoods: LoggedFood[];
+  onPrevDay: () => void;
+  onNextDay: () => void;
+  onToday: () => void;
+  onSelectDate: (date: string) => void;
 }
 
-const DailyStatsHeader = ({ loggedFoods }: DailyStatsHeaderProps) => {
+const DailyStatsHeader = ({
+  date,
+  loggedFoods,
+  onPrevDay,
+  onNextDay,
+  onToday,
+  onSelectDate,
+}: DailyStatsHeaderProps) => {
   const totals = getDailyTotals(loggedFoods);
+  const isToday = date === getTodayDateString();
 
   const macros = [
     { label: "Protein", grams: totals.protein, className: styles.protein },
@@ -19,8 +35,35 @@ const DailyStatsHeader = ({ loggedFoods }: DailyStatsHeaderProps) => {
   return (
     <header className={styles.statsHeader}>
       <div className={styles.dateBlock}>
-        <p className={styles.eyebrow}>Today</p>
-        <h1 className={styles.date}>{getTodayLabel()}</h1>
+        <div className={styles.eyebrowRow}>
+          {isToday ? (
+            <p className={styles.eyebrow}>Today</p>
+          ) : (
+            <button type="button" className={styles.todayButton} onClick={onToday}>
+              <FontAwesomeIcon icon={faArrowLeft} /> Back to today
+            </button>
+          )}
+          <DatePickerPopover date={date} onSelect={onSelectDate} />
+        </div>
+        <div className={styles.dateNav}>
+          <button
+            type="button"
+            className={styles.navButton}
+            onClick={onPrevDay}
+            aria-label="Previous day"
+          >
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
+          <h1 className={styles.date}>{getDateLabel(date)}</h1>
+          <button
+            type="button"
+            className={styles.navButton}
+            onClick={onNextDay}
+            aria-label="Next day"
+          >
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
+        </div>
       </div>
       <div className={styles.caloriesCard}>
         <span className={styles.caloriesLabel}>Calories</span>
