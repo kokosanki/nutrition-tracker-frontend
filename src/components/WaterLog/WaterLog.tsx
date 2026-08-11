@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDroplet } from "@fortawesome/free-solid-svg-icons";
+import { faDroplet, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useWaterLog } from "@/hooks/useWaterLog.ts";
 import { useLogWater } from "@/hooks/useLogWater.ts";
 import styles from "./WaterLog.module.scss";
@@ -40,15 +40,16 @@ const WaterLog = ({ date }: WaterLogProps) => {
             onClick={() => logWater({ amountMl, loggedDate: date })}
             disabled={isLogging}
           >
-            +{amountMl}
+            {amountMl} ml
           </button>
         ))}
         <button
           type="button"
           className={styles.logButton}
           onClick={() => navigate("/water", { state: { date, backTo: "/" } })}
+          aria-label="View water log details"
         >
-          Log water
+          <FontAwesomeIcon icon={faPlus} />
         </button>
       </div>
       {error && <p className={styles.error}>{error}</p>}

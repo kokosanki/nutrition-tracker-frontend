@@ -58,8 +58,7 @@
 }
 
 .logButton {
-  @include button;
-  padding: 10px 16px;
+  @include icon-button;
 }
 
 .error {

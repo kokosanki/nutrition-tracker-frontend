@@ -24,6 +24,25 @@
   justify-content: center;
 }
 
+@mixin icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 1rem;
+  color: var(--card-text);
+  background: var(--accent-bg);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background: color-mix(in srgb, var(--accent-bg) 70%, var(--accent) 30%);
+  }
+}
+
 @mixin back-link {
   display: inline-block;
   color: var(--card-subtext);
