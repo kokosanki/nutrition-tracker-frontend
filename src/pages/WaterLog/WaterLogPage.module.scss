@@ -1,0 +1,102 @@
+@use "@/styles/mixins" as *;
+
+.backLink {
+  @include back-link;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.titleIcon {
+  color: var(--water);
+  font-size: 1.1rem;
+}
+
+.title {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--water);
+  font-size: 0.85rem;
+}
+
+.amount {
+  margin: 12px 0 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--card-text);
+}
+
+.label {
+  margin: 2px 0 0;
+  color: var(--card-subtext);
+  font-size: 0.9rem;
+}
+
+.sectionHeading {
+  margin: 24px 0 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--card-subtext);
+}
+
+.addRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.addOption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--card-text);
+  background: var(--card-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 14px;
+  cursor: pointer;
+
+  svg {
+    color: var(--water);
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    border-color: var(--water);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.customForm {
+  margin-top: 12px;
+  max-width: 240px;
+}
+
+.customSubmit {
+  @include button;
+  padding: 10px 16px;
+}
+
+.empty {
+  margin: 12px 0 0;
+  color: var(--card-subtext);
+  font-size: 0.875rem;
+}
+
+.errorText {
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--error);
+}

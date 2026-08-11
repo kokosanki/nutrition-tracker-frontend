@@ -17,3 +17,25 @@ export const getWaterLog = (date: string): Promise<WaterLogResults> => {
     method: "GET",
   });
 };
+
+export interface LogWaterPayload {
+  amountMl: number;
+  loggedDate: string;
+}
+
+export interface LogWaterResult {
+  waterLog: WaterLogEntry;
+}
+
+export const logWater = (payload: LogWaterPayload): Promise<LogWaterResult> => {
+  return apiFetch<LogWaterResult>("/water", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+};
+
+export const deleteWaterLog = (id: number): Promise<void> => {
+  return apiFetch<void>(`/water/${id}`, {
+    method: "DELETE",
+  });
+};

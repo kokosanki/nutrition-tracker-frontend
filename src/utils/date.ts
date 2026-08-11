@@ -24,3 +24,10 @@ export const getDateLabel = (dateString: string) =>
     day: "numeric",
     month: "short",
   }).format(parseLocalDate(dateString));
+
+export const getTimeLabel = (isoString: string) =>
+  new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  }).format(new Date(isoString));

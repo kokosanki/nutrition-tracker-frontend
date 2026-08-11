@@ -9,10 +9,11 @@ export const useWaterLog = (date: string) => {
     staleTime: 5 * 60 * 1000,
   });
 
-  const totalMl =
-    data?.waterLogs.reduce((total, entry) => total + entry.amountMl, 0) ?? 0;
+  const entries = data?.waterLogs ?? [];
+  const totalMl = entries.reduce((total, entry) => total + entry.amountMl, 0);
 
   return {
+    entries,
     totalMl,
     isLoading,
     error: error

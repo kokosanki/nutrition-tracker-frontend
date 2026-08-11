@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDroplet } from "@fortawesome/free-solid-svg-icons";
 import { useWaterLog } from "@/hooks/useWaterLog.ts";
@@ -8,6 +9,7 @@ interface WaterLogProps {
 }
 
 const WaterLog = ({ date }: WaterLogProps) => {
+  const navigate = useNavigate();
   const { totalMl, isLoading, error } = useWaterLog(date);
 
   return (
@@ -30,7 +32,11 @@ const WaterLog = ({ date }: WaterLogProps) => {
         <button type="button" className={styles.quickAdd}>
           +500
         </button>
-        <button type="button" className={styles.logButton}>
+        <button
+          type="button"
+          className={styles.logButton}
+          onClick={() => navigate("/water", { state: { date, backTo: "/" } })}
+        >
           Log water
         </button>
       </div>
