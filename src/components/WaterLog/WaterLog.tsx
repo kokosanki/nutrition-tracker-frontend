@@ -2,7 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDroplet } from "@fortawesome/free-solid-svg-icons";
 import { useWaterLog } from "@/hooks/useWaterLog.ts";
+import { useLogWater } from "@/hooks/useLogWater.ts";
 import styles from "./WaterLog.module.scss";
+
+const QUICK_AMOUNTS = [250, 500];
 
 interface WaterLogProps {
   date: string;
@@ -10,7 +13,10 @@ interface WaterLogProps {
 
 const WaterLog = ({ date }: WaterLogProps) => {
   const navigate = useNavigate();
-  const { totalMl, isLoading, error } = useWaterLog(date);
+  const { totalMl, isLoading, error: loadError } = useWaterLog(date);
+  const { logWater, isLoading: isLogging, error: logError } = useLogWater();
+
+  const error = loadError ?? logError;
 
   return (
     <div className={styles.waterLog}>
@@ -26,12 +32,17 @@ const WaterLog = ({ date }: WaterLogProps) => {
         </div>
       </div>
       <div className={styles.actions}>
-        <button type="button" className={styles.quickAdd}>
-          +250
-        </button>
-        <button type="button" className={styles.quickAdd}>
-          +500
-        </button>
+        {QUICK_AMOUNTS.map((amountMl) => (
+          <button
+            key={amountMl}
+            type="button"
+            className={styles.quickAdd}
+            onClick={() => logWater({ amountMl, loggedDate: date })}
+            disabled={isLogging}
+          >
+            +{amountMl}
+          </button>
+        ))}
         <button
           type="button"
           className={styles.logButton}
