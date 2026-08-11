@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./DailyLog.module.scss";
 import MealLog from "@/components/MealLog/MealLog";
 import DailyStatsHeader from "@/components/DailyStatsHeader/DailyStatsHeader";
+import WaterLog from "@/components/WaterLog/WaterLog";
 import { MEAL_TYPES } from "@/constants/mealTypes.ts";
 import { useFoodJournal } from "@/hooks/useFoodJournal.ts";
 import { addDays, getTodayDateString } from "@/utils/date.ts";
@@ -25,6 +26,7 @@ const DailyLog = () => {
         onToday={handleToday}
         onSelectDate={handleSelectDate}
       />
+      <WaterLog date={date} />
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {MEAL_TYPES.map((mealType) => (
