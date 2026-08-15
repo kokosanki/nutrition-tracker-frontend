@@ -17,15 +17,17 @@ const MealLog = ({ mealType, items }: MealLogProps) => {
 
   return (
     <div>
-      <h2>{label}</h2>
-      <button
-        onClick={() => navigate(`/mealLog/${mealType}`)}
-        className={styles.logButton}
-        type="button"
-        aria-label={`Add food to ${label}`}
-      >
-        <FontAwesomeIcon icon={faPlus} />
-      </button>
+      <div className={styles.header}>
+        <h2 className={styles.title}>{label}</h2>
+        <button
+          onClick={() => navigate(`/mealLog/${mealType}`)}
+          className={styles.logButton}
+          type="button"
+          aria-label={`Add food to ${label}`}
+        >
+          <FontAwesomeIcon icon={faPlus} />
+        </button>
+      </div>
       <LoggedFoodList items={items} />
     </div>
   );

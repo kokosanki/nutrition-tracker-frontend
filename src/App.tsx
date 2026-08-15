@@ -6,6 +6,7 @@ import Login from "@/pages/Login/Login.tsx";
 import Signup from "@/pages/Signup/Signup.tsx";
 import MealLogPage from "@/pages/MealLog/MealLogPage.tsx";
 import FoodDetailPage from "@/pages/FoodDetail/FoodDetailPage.tsx";
+import WaterLogPage from "@/pages/WaterLog/WaterLogPage.tsx";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/mealLog/:mealType" element={<MealLogPage />} />
         <Route path="/mealLog/:mealType/foods/:offId" element={<FoodDetailPage />} />
+        <Route path="/water" element={<WaterLogPage />} />
       </Route>
       <Route element={<GuestRoute />}>
         <Route path="/login" element={<Login />} />

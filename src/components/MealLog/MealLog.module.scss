@@ -1,5 +1,16 @@
 @use "@/styles/mixins" as *;
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.title {
+  margin: 0;
+}
+
 .logButton {
-  @include button-round;
+  @include icon-button;
 }
